@@ -2,19 +2,36 @@ package zutil
 
 import (
 	"crypto/md5"
+	"encoding/hex"
 	"io"
 	"os"
 )
-func GeneratorMd5(p string)([]byte,error){
-	f,err:=os.Open(p)
-	if err!=nil{
-		return nil,err
+func GeneratorMd5(filePath string)(string,error){
+	//Initialize variable returnMD5String now in case an error has to be returned
+	var returnMD5String string
+
+	//Open the passed argument and check for any error
+	file, err := os.Open(filePath)
+	if err != nil {
+		return returnMD5String, err
 	}
 
-	defer f.Close()
-	md5hash:=md5.New()
-	if _,err:=io.Copy(md5hash,f);err!=nil{
-		return nil,err
+	//Tell the program to call the following function when the current function returns
+	defer file.Close()
+
+	//Open a new hash interface to write to
+	hash := md5.New()
+
+	//Copy the file in the hash interface and check for any error
+	if _, err := io.Copy(hash, file); err != nil {
+		return returnMD5String, err
 	}
-	return md5hash.Sum(nil),nil
+
+	//Get the 16 bytes hash
+	hashInBytes := hash.Sum(nil)[:16]
+
+	//Convert the bytes to a string
+	returnMD5String = hex.EncodeToString(hashInBytes)
+
+	return returnMD5String, nill
 }
