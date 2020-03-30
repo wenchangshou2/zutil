@@ -6,7 +6,8 @@ import (
 	"io"
 	"os"
 )
-func GeneratorMd5(filePath string)(string,error){
+
+func GeneratorMd5(filePath string) (string, error) {
 	//Initialize variable returnMD5String now in case an error has to be returned
 	var returnMD5String string
 
@@ -33,5 +34,5 @@ func GeneratorMd5(filePath string)(string,error){
 	//Convert the bytes to a string
 	returnMD5String = hex.EncodeToString(hashInBytes)
 
-	return returnMD5String, nill
+	return returnMD5String, nil
 }
