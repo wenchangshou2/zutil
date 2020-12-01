@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// GeneratorMd5 计算文件md5
 func GeneratorMd5(filePath string) (string, error) {
 	//Initialize variable returnMD5String now in case an error has to be returned
 	var returnMD5String string
@@ -35,4 +36,12 @@ func GeneratorMd5(filePath string) (string, error) {
 	returnMD5String = hex.EncodeToString(hashInBytes)
 
 	return returnMD5String, nil
+}
+
+// GenerateStringMd5 计算字符串的md5
+func GenerateStringMd5(str string) string {
+	h := md5.New()
+	h.Write([]byte(str))
+	return hex.EncodeToString(h.Sum(nil))
+
 }
