@@ -56,3 +56,26 @@ func RelativePath(name string) string {
 	e, _ := os.Executable()
 	return filepath.Join(filepath.Dir(e), name)
 }
+
+/* ==========
+	 验证器
+   ==========
+*/
+
+// 文件/路径名保留字符
+var reservedCharacter = []string{"\\", "?", "*", "<", "\"", ":", ">", "/", "|"}
+
+// IsInExtensionList 返回文件的扩展名是否在给定的列表范围内
+func IsInExtensionList(extList []string, fileName string) bool {
+	ext := strings.ToLower(filepath.Ext(fileName))
+	// 无扩展名时
+	if len(ext) == 0 {
+		return false
+	}
+
+	if ContainsString(extList, ext[1:]) {
+		return true
+	}
+
+	return false
+}
