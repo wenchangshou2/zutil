@@ -6,10 +6,6 @@ import (
 	"strconv"
 )
 
-<<<<<<< HEAD
-=======
-// MapToString 参数识别
->>>>>>> 8bb048339a0bdf55f74c4da1769717df9866f515
 func MapToString(arguments map[string]interface{}) string {
 	str := ""
 	for k, v := range arguments {
@@ -33,7 +29,6 @@ func MapToString(arguments map[string]interface{}) string {
 	}
 	return str
 }
-<<<<<<< HEAD
 func MapToStringV2(arguments map[string]interface{}) string {
 	str := ""
 	for k, v := range arguments {
@@ -60,7 +55,7 @@ func MapToStringV2(arguments map[string]interface{}) string {
 		}
 	}
 	return str
-=======
+}
 
 // RandStringRunes 返回随机字符串
 func RandStringRunes(n int) string {
@@ -81,5 +76,4 @@ func ContainsString(s []string, e string) bool {
 		}
 	}
 	return false
->>>>>>> 8bb048339a0bdf55f74c4da1769717df9866f515
 }
