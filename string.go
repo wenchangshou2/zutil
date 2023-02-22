@@ -42,7 +42,9 @@ func MapToStringV2(arguments map[string]interface{}) string {
 		case reflect.Bool:
 			s += strconv.FormatBool(v.Bool())
 		case reflect.String:
-			s += strconv.Quote(v.String())
+			if v.String() != "" {
+				s += strconv.Quote(v.String())
+			}
 		case reflect.Float32, reflect.Float64:
 			s += strconv.Itoa(int(v.Float()))
 		}
